@@ -100,3 +100,5 @@ export function IsmDetail({ ism, onBack }: IsmDetailProps) {
     </div>
   );
 }
+
+

@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { GridSlider } from './components/GridSlider';
 import { SearchButton } from './components/SearchButton';
 import { ResultCard } from './components/ResultCard';
 import { TopNavigation } from './components/TopNavigation';
+import { IsmDetail } from './components/IsmDetail';
 import { searchIsms, Ism } from './data/isms';
 import './styles/globals.css';
 
@@ -10,6 +11,8 @@ export default function App() {
   const [sliderValues, setSliderValues] = useState<string[]>(['1', '2', '3', '4']);
   const [searchResults, setSearchResults] = useState<Ism[]>([]);
   const [hasSearched, setHasSearched] = useState(false);
+  const [selectedIsm, setSelectedIsm] = useState<Ism | null>(null);
+  const scrollPositionRef = useRef<number>(0);
   
   const handleSliderChange = (index: number, value: string) => {
     const newValues = [...sliderValues];
@@ -28,7 +31,29 @@ export default function App() {
     setSliderValues(['1', '2', '3', '4']);
     setSearchResults([]);
     setHasSearched(false);
+    setSelectedIsm(null);
   };
+  
+  const handleIsmClick = (ism: Ism) => {
+    // 保存当前滚动位置
+    scrollPositionRef.current = window.scrollY;
+    setSelectedIsm(ism);
+  };
+  
+  const handleBackToResults = () => {
+    setSelectedIsm(null);
+  };
+  
+  // 返回列表时直接跳回原位置；进入详情页时平滑滚到顶部
+  useEffect(() => {
+    if (selectedIsm === null && scrollPositionRef.current > 0) {
+      setTimeout(() => {
+        window.scrollTo({ top: scrollPositionRef.current, behavior: 'auto' });
+      }, 50);
+    } else if (selectedIsm !== null) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [selectedIsm]);
   
   const currentSearchDisplay = sliderValues.join('-');
   
@@ -59,8 +84,8 @@ export default function App() {
             <SearchButton onClick={handleSearch} />
           </div>
           
-          {/* Search Results */}
-          {hasSearched && (
+          {/* Search Results or Detail View */}
+          {hasSearched && selectedIsm === null && (
             <div className="flex flex-col items-center gap-4">
               {searchResults.length > 0 ? (
                 <>
@@ -72,6 +97,7 @@ export default function App() {
                       key={`${result.code}-${index}`}
                       name={result.name}
                       description={result.description}
+                      onClick={() => handleIsmClick(result)}
                     />
                   ))}
                 </>
@@ -84,6 +110,11 @@ export default function App() {
                 </div>
               )}
             </div>
+          )}
+
+          {/* Detail View */}
+          {selectedIsm && (
+            <IsmDetail ism={selectedIsm} onBack={handleBackToResults} />
           )}
           
           {/* Initial State - Show instruction */}
