@@ -6,7 +6,7 @@
 
 ## ✨ 在线体验
 
-🔗 **[https://desperati0n.github.io/ismism/](https://desperati0n.github.io/ismism/)**
+🔗 **[http://desperati0n.github.io/ismism/](http://desperati0n.github.io/ismism/)**
 
 ## 📖 什么是主义主义？
 
