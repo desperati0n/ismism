@@ -3,57 +3,72 @@ interface WaveTextBackgroundProps {
 }
 
 export function WaveTextBackground({ className = '' }: WaveTextBackgroundProps) {
-  // 生成超长的"主义"文字 - 确保任何屏幕宽度都不会断
-  const baseText = '主义'.repeat(100);
-  
-  const ribbons = [
-    { rotate: -8, top: '5%', delay: 0, reverse: false },
-    { rotate: -5, top: '18%', delay: 0.5, reverse: true },
-    { rotate: -12, top: '32%', delay: 1, reverse: false },
-    { rotate: -3, top: '48%', delay: 1.5, reverse: true },
-    { rotate: -10, top: '62%', delay: 2, reverse: false },
-    { rotate: -6, top: '76%', delay: 2.5, reverse: true },
-    { rotate: -9, top: '88%', delay: 3, reverse: false },
+  // 使用纯CSS实现斜条纹背景，不会有断裂问题
+  const stripes = [
+    { top: '8%', rotate: -12 },
+    { top: '24%', rotate: -6 },
+    { top: '42%', rotate: -15 },
+    { top: '58%', rotate: -8 },
+    { top: '74%', rotate: -10 },
+    { top: '90%', rotate: -5 },
   ];
 
   return (
     <div className={`fixed inset-0 overflow-hidden pointer-events-none ${className}`}>
-      {ribbons.map((ribbon, index) => (
+      {stripes.map((stripe, index) => (
         <div
           key={index}
-          className="absolute text-ribbon-wrapper"
+          className="absolute stripe-band"
           style={{
-            top: ribbon.top,
-            transform: `rotate(${ribbon.rotate}deg)`,
-            width: '500vw',
-            left: '-200vw',
+            top: stripe.top,
+            left: '-50%',
+            width: '200%',
+            height: 'clamp(24px, 4vw, 40px)',
+            transform: `rotate(${stripe.rotate}deg)`,
+            background: '#000',
+            display: 'flex',
+            alignItems: 'center',
+            overflow: 'hidden',
           }}
         >
-          <div
-            className={`text-ribbon ${ribbon.reverse ? 'animate-scroll-reverse' : 'animate-scroll'}`}
+          <div 
+            className="stripe-text-container"
             style={{
-              animationDelay: `${ribbon.delay}s`,
-              animationDuration: `${15 + index * 2}s`,
+              display: 'flex',
+              animation: `stripe-scroll ${20 + index * 3}s linear infinite`,
+              animationDirection: index % 2 === 0 ? 'normal' : 'reverse',
             }}
           >
-            <div
-              className="flex items-center whitespace-nowrap ribbon-band"
-              style={{
-                background: '#000',
-              }}
-            >
+            {/* 重复两组文字实现无缝滚动 */}
+            {[0, 1].map((group) => (
               <span
-                className="text-white font-black tracking-tight whitespace-nowrap ribbon-text"
+                key={group}
+                className="text-white font-black whitespace-nowrap"
                 style={{
+                  fontSize: 'clamp(12px, 2vw, 20px)',
                   fontFamily: "'Noto Sans SC', 'Microsoft YaHei', sans-serif",
+                  letterSpacing: '0.05em',
+                  paddingRight: '2em',
                 }}
               >
-                {baseText}
+                {'主义 · '.repeat(50)}
               </span>
-            </div>
+            ))}
           </div>
         </div>
       ))}
+      
+      {/* 添加CSS动画 */}
+      <style>{`
+        @keyframes stripe-scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+      `}</style>
     </div>
   );
 }
