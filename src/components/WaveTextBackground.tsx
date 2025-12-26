@@ -3,8 +3,8 @@ interface WaveTextBackgroundProps {
 }
 
 export function WaveTextBackground({ className = '' }: WaveTextBackgroundProps) {
-  // 生成重复的"主义"文字
-  const ismText = '主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义';
+  // 生成重复的"主义"文字 - 增加重复次数确保覆盖全屏
+  const ismText = '主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义';
   
   const ribbons = [
     { rotate: -8, top: '5%', delay: 0, reverse: false },
@@ -21,12 +21,12 @@ export function WaveTextBackground({ className = '' }: WaveTextBackgroundProps) 
       {ribbons.map((ribbon, index) => (
         <div
           key={index}
-          className="absolute left-0 right-0 text-ribbon-wrapper"
+          className="absolute text-ribbon-wrapper"
           style={{
             top: ribbon.top,
             transform: `rotate(${ribbon.rotate}deg)`,
-            width: '200%',
-            left: '-50%',
+            width: '300vw',
+            left: '-100vw',
           }}
         >
           <div
@@ -37,20 +37,20 @@ export function WaveTextBackground({ className = '' }: WaveTextBackgroundProps) 
             }}
           >
             <div
-              className="flex items-center"
+              className="flex items-center whitespace-nowrap"
               style={{
                 background: '#000',
                 padding: '8px 0',
               }}
             >
               <span
-                className="text-white font-black tracking-tight"
+                className="text-white font-black tracking-tight whitespace-nowrap"
                 style={{
                   fontSize: '24px',
                   fontFamily: "'Noto Sans SC', 'Microsoft YaHei', sans-serif",
                 }}
               >
-                {ismText}{ismText}{ismText}{ismText}
+                {ismText}{ismText}{ismText}{ismText}{ismText}{ismText}
               </span>
             </div>
           </div>
