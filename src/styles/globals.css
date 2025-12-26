@@ -264,14 +264,74 @@ html {
   position: relative;
 }
 
-/* 粉红色圆点 */
+/* 粉红色圆点 - 响应式大小 */
 .dot-pink {
-  width: 24px;
-  height: 24px;
   background: #ff1493;
   border-radius: 50%;
   position: absolute;
   z-index: 10;
+  width: 16px;
+  height: 16px;
+}
+
+/* 小屏幕 */
+@media (min-width: 640px) {
+  .dot-pink {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* 中等屏幕 */
+@media (min-width: 768px) {
+  .dot-pink {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* 大屏幕 */
+@media (min-width: 1024px) {
+  .dot-pink {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* 条带样式 - 响应式 */
+.ribbon-band {
+  padding: 4px 0;
+}
+
+.ribbon-text {
+  font-size: 14px;
+}
+
+@media (min-width: 640px) {
+  .ribbon-band {
+    padding: 6px 0;
+  }
+  .ribbon-text {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 768px) {
+  .ribbon-band {
+    padding: 8px 0;
+  }
+  .ribbon-text {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ribbon-band {
+    padding: 10px 0;
+  }
+  .ribbon-text {
+    font-size: 28px;
+  }
 }
 
 /* 搜索结果列表样式 */

@@ -72,44 +72,44 @@ export default function App() {
       {/* 波浪文字背景 */}
       <WaveTextBackground />
       
-      {/* 粉红色装饰点 */}
-      <div className="dot-pink" style={{ top: '20%', left: '8%' }} />
-      <div className="dot-pink" style={{ top: '45%', right: '10%' }} />
-      <div className="dot-pink" style={{ bottom: '25%', left: '15%' }} />
+      {/* 粉红色装饰点 - 响应式大小 */}
+      <div className="dot-pink dot-pink-sm md:dot-pink-md lg:dot-pink-lg" style={{ top: '20%', left: '8%' }} />
+      <div className="dot-pink dot-pink-sm md:dot-pink-md lg:dot-pink-lg" style={{ top: '45%', right: '10%' }} />
+      <div className="dot-pink dot-pink-sm md:dot-pink-md lg:dot-pink-lg" style={{ bottom: '25%', left: '15%' }} />
       
       {/* 顶部导航 */}
       <TopNavigation currentSearch={currentSearchDisplay} onReset={handleReset} />
       
-      {/* 主内容区 - 居中白色卡片 */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen py-20 px-4">
+      {/* 主内容区 - 居中白色卡片，响应式宽度和内边距 */}
+      <div className="relative z-10 flex items-center justify-center min-h-screen py-12 sm:py-16 md:py-20 px-3 sm:px-4">
         <div 
-          className="w-full max-w-[600px] bg-white p-8"
+          className="w-full max-w-[95vw] sm:max-w-[85vw] md:max-w-[600px] bg-white p-4 sm:p-6 md:p-8"
           style={{
             boxShadow: '0 0 0 1px #000',
           }}
         >
-          {/* 标题 */}
+          {/* 标题 - 响应式字体大小 */}
           <h1 
-            className="text-center font-black mb-8"
-            style={{ fontSize: '32px', letterSpacing: '-0.02em' }}
+            className="text-center font-black mb-4 sm:mb-6 md:mb-8 text-2xl sm:text-[28px] md:text-[32px]"
+            style={{ letterSpacing: '-0.02em' }}
           >
             主义主义
           </h1>
           
-          {/* 搜索框显示 */}
+          {/* 搜索框显示 - 响应式 */}
           <div 
-            className="flex items-center justify-center gap-2 mb-6 p-3"
+            className="flex items-center justify-center gap-2 mb-4 sm:mb-6 p-2 sm:p-3"
             style={{ 
               border: '1px solid #000',
               background: '#fff',
             }}
           >
-            <span className="text-gray-500 text-sm">搜索</span>
-            <span className="font-mono font-bold text-lg">{currentSearchDisplay}</span>
+            <span className="text-gray-500 text-xs sm:text-sm">搜索</span>
+            <span className="font-mono font-bold text-base sm:text-lg">{currentSearchDisplay}</span>
           </div>
           
-          {/* Grid Sliders */}
-          <div className="flex items-center justify-center gap-3 mb-6">
+          {/* Grid Sliders - 响应式间距和尺寸 */}
+          <div className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3 mb-4 sm:mb-6">
             {sliderValues.map((value, index) => (
               <GridSlider
                 key={index}

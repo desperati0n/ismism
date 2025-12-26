@@ -29,7 +29,7 @@ export function GridSlider({ index, value, onChange }: GridSliderProps) {
     <button
       onClick={handleClick}
       className={`
-        w-[60px] h-[60px]
+        w-[44px] h-[44px] sm:w-[52px] sm:h-[52px] md:w-[60px] md:h-[60px]
         flex items-center justify-center
         transition-all duration-150
         hover:scale-110 active:scale-95
@@ -43,7 +43,7 @@ export function GridSlider({ index, value, onChange }: GridSliderProps) {
     >
       <span
         className={`
-          text-2xl font-black
+          text-lg sm:text-xl md:text-2xl font-black
           transition-all duration-150
           ${isAnimating ? 'opacity-0 transform -translate-y-1' : 'opacity-100'}
         `}

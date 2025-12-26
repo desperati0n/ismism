@@ -37,16 +37,14 @@ export function WaveTextBackground({ className = '' }: WaveTextBackgroundProps) 
             }}
           >
             <div
-              className="flex items-center whitespace-nowrap"
+              className="flex items-center whitespace-nowrap ribbon-band"
               style={{
                 background: '#000',
-                padding: '8px 0',
               }}
             >
               <span
-                className="text-white font-black tracking-tight whitespace-nowrap"
+                className="text-white font-black tracking-tight whitespace-nowrap ribbon-text"
                 style={{
-                  fontSize: '24px',
                   fontFamily: "'Noto Sans SC', 'Microsoft YaHei', sans-serif",
                 }}
               >
