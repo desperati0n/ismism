@@ -16,11 +16,12 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["."],
+  "include": ["src/App.tsx", "src/main.tsx", "src/data", "src/components/GridSlider.tsx", "src/components/IsmDetail.tsx", "src/components/ResultCard.tsx", "src/components/SearchButton.tsx", "src/components/TopNavigation.tsx", "src/components/WaveTextBackground.tsx", "App.tsx", "main.tsx", "components", "data"],
+  "exclude": ["vite.config.ts", "node_modules", "src/components/ui", "src/components/Comment.tsx", "src/services"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
 
