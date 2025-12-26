@@ -8,7 +8,7 @@ import { WaveTextBackground } from './components/WaveTextBackground';
 import { searchIsms, Ism } from './data/isms';
 
 export default function App() {
-  const [sliderValues, setSliderValues] = useState<string[]>(['1', '2', '3', '4']);
+  const [sliderValues, setSliderValues] = useState<string[]>(['1', '4', '3', '4']);
   const [searchResults, setSearchResults] = useState<Ism[]>([]);
   const [hasSearched, setHasSearched] = useState(false);
   const [selectedIsm, setSelectedIsm] = useState<Ism | null>(null);
@@ -28,7 +28,7 @@ export default function App() {
   };
   
   const handleReset = () => {
-    setSliderValues(['1', '2', '3', '4']);
+    setSliderValues(['1', '4', '3', '4']);
     setSearchResults([]);
     setHasSearched(false);
     setSelectedIsm(null);
