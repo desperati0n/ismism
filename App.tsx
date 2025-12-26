@@ -4,6 +4,7 @@ import { SearchButton } from './components/SearchButton';
 import { ResultCard } from './components/ResultCard';
 import { TopNavigation } from './components/TopNavigation';
 import { IsmDetail } from './components/IsmDetail';
+import { WaveTextBackground } from './components/WaveTextBackground';
 import { searchIsms, Ism } from './data/isms';
 import './styles/globals.css';
 
@@ -35,7 +36,6 @@ export default function App() {
   };
   
   const handleIsmClick = (ism: Ism) => {
-    // 保存当前滚动位置
     scrollPositionRef.current = window.scrollY;
     setSelectedIsm(ism);
   };
@@ -44,7 +44,6 @@ export default function App() {
     setSelectedIsm(null);
   };
   
-  // 返回列表时直接跳回原位置；进入详情页时平滑滚到顶部
   useEffect(() => {
     if (selectedIsm === null && scrollPositionRef.current > 0) {
       setTimeout(() => {
@@ -59,20 +58,53 @@ export default function App() {
   
   return (
     <div
-      className="min-h-screen relative"
+      className="min-h-screen relative overflow-hidden"
       style={{
-        backgroundColor: '#0f0f1a',
-        fontFamily: "'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', 'PingFang SC', 'Microsoft YaHei', sans-serif",
+        backgroundColor: '#f5f5f5',
+        fontFamily: "'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', sans-serif",
       }}
     >
-      {/* Top Navigation */}
+      {/* 波浪文字背景 */}
+      <WaveTextBackground />
+      
+      {/* 粉红色装饰点 */}
+      <div className="dot-pink" style={{ top: '20%', left: '8%' }} />
+      <div className="dot-pink" style={{ top: '45%', right: '10%' }} />
+      <div className="dot-pink" style={{ bottom: '25%', left: '15%' }} />
+      
+      {/* 顶部导航 */}
       <TopNavigation currentSearch={currentSearchDisplay} onReset={handleReset} />
       
-      {/* Main Content */}
-      <div className="pt-32 pb-16 px-8">
-        <div className="max-w-[1920px] mx-auto">
-          {/* Grid Sliders + Search Button */}
-          <div className="flex items-center justify-center gap-6 mb-16">
+      {/* 主内容区 - 居中白色卡片 */}
+      <div className="relative z-10 flex items-center justify-center min-h-screen py-20 px-4">
+        <div 
+          className="w-full max-w-[600px] bg-white p-8"
+          style={{
+            boxShadow: '0 0 0 1px #000',
+          }}
+        >
+          {/* 标题 */}
+          <h1 
+            className="text-center font-black mb-8"
+            style={{ fontSize: '32px', letterSpacing: '-0.02em' }}
+          >
+            主义主义
+          </h1>
+          
+          {/* 搜索框显示 */}
+          <div 
+            className="flex items-center justify-center gap-2 mb-6 p-3"
+            style={{ 
+              border: '1px solid #000',
+              background: '#fff',
+            }}
+          >
+            <span className="text-gray-500 text-sm">搜索</span>
+            <span className="font-mono font-bold text-lg">{currentSearchDisplay}</span>
+          </div>
+          
+          {/* Grid Sliders */}
+          <div className="flex items-center justify-center gap-3 mb-6">
             {sliderValues.map((value, index) => (
               <GridSlider
                 key={index}
@@ -84,14 +116,14 @@ export default function App() {
             <SearchButton onClick={handleSearch} />
           </div>
           
-          {/* Search Results or Detail View */}
+          {/* 分隔线 */}
+          <div className="h-px bg-black mb-6" />
+          
+          {/* 搜索结果 */}
           {hasSearched && selectedIsm === null && (
-            <div className="flex flex-col items-center gap-4">
+            <div className="animate-fadeInUp">
               {searchResults.length > 0 ? (
-                <>
-                  <div className="text-white/70 mb-4 text-base">
-                    找到 {searchResults.length} 个匹配的主义
-                  </div>
+                <div>
                   {searchResults.map((result, index) => (
                     <ResultCard
                       key={`${result.code}-${index}`}
@@ -100,44 +132,30 @@ export default function App() {
                       onClick={() => handleIsmClick(result)}
                     />
                   ))}
-                </>
+                </div>
               ) : (
-                <div className="text-white/50 text-center mt-8">
-                  <p className="mb-2 text-base">未找到匹配的主义</p>
-                  <p className="text-sm">
-                    尝试调整格子中的值或使用通配符 $ 来扩大搜索范围
-                  </p>
+                <div className="text-center py-8 text-gray-500">
+                  <p className="mb-2">未找到匹配的主义</p>
+                  <p className="text-sm">使用 $ 作为通配符扩大搜索</p>
                 </div>
               )}
             </div>
           )}
-
-          {/* Detail View */}
+          
+          {/* 详情视图 */}
           {selectedIsm && (
             <IsmDetail ism={selectedIsm} onBack={handleBackToResults} />
           )}
           
-          {/* Initial State - Show instruction */}
+          {/* 初始说明 */}
           {!hasSearched && (
-            <div className="text-center text-white/50 mt-16">
-              <p className="mb-4 text-base">滑动格子选择元素，然后点击搜索按钮</p>
-              <div className="text-sm space-y-2">
-                <p>• 数字 1, 2, 3, 4 代表不同的哲学维度</p>
-                <p>• <span className="text-[#FF6B6B]">第一个格子的 $</span> 代表"主体性缺失"</p>
-                <p>• <span className="text-[#FFD700]">其他格子的 $</span> 作为通配符使用</p>
-              </div>
+            <div className="text-center text-gray-500 text-sm space-y-1">
+              <p>点击数字切换哲学维度</p>
+              <p><span className="text-[#ff1493]">$</span> = 主体性缺失 / 通配符</p>
             </div>
           )}
         </div>
       </div>
-      
-      {/* Background decorative elements */}
-      <div
-        className="fixed inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle at 50% 50%, rgba(74, 144, 226, 0.03) 0%, transparent 50%)',
-        }}
-      />
     </div>
   );
 }

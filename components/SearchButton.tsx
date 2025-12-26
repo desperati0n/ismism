@@ -20,16 +20,18 @@ export function SearchButton({ onClick }: SearchButtonProps) {
       onMouseUp={handleMouseUp}
       onMouseLeave={() => setIsPressed(false)}
       className={`
-        w-[120px] h-[120px] rounded-xl
-        bg-[#4A90E2] hover:bg-[#5BA0F2]
+        w-[60px] h-[60px]
         flex items-center justify-center
         transition-all duration-150
-        ${isPressed ? 'scale-95 bg-[#3A80D2]' : ''}
+        hover:scale-110
+        ${isPressed ? 'scale-95' : ''}
       `}
-      style={!isPressed ? { boxShadow: '0 0 15px rgba(74, 144, 226, 0.3)' } : {}}
+      style={{
+        background: '#000',
+      }}
       aria-label="Search"
     >
-      <Search className="w-8 h-8 text-white" strokeWidth={2.5} />
+      <Search className="w-5 h-5 text-white" strokeWidth={2.5} />
     </button>
   );
 }

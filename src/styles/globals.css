@@ -2,43 +2,51 @@
 
 :root {
   --font-size: 16px;
-  --background: #ffffff;
-  --foreground: oklch(0.145 0 0);
+  /* 主义主义 - 前卫实验风格 */
+  --background: #f5f5f5;
+  --foreground: #000000;
   --card: #ffffff;
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #030213;
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.95 0.0058 264.53);
-  --secondary-foreground: #030213;
-  --muted: #ececf0;
-  --muted-foreground: #717182;
-  --accent: #e9ebef;
-  --accent-foreground: #030213;
-  --destructive: #d4183d;
+  --card-foreground: #000000;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  
+  /* 主色调：纯黑 */
+  --primary: #000000;
+  --primary-foreground: #ffffff;
+  
+  /* 强调色：品红/粉红 */
+  --accent: #ff1493;
+  --accent-foreground: #ffffff;
+  
+  /* 次要色 */
+  --secondary: #e0e0e0;
+  --secondary-foreground: #000000;
+  
+  --muted: #f0f0f0;
+  --muted-foreground: #666666;
+  --destructive: #ff1493;
   --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.1);
+  --border: #000000;
   --input: transparent;
-  --input-background: #f3f3f5;
+  --input-background: #ffffff;
   --switch-background: #cbced4;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: oklch(0.708 0 0);
+  --ring: #000000;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: #030213;
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --radius: 0;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #000000;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f0f0f0;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #000000;
+  --sidebar-ring: #000000;
 }
 
 .dark {
@@ -202,4 +210,93 @@ html {
 
 .animate-fadeInUp {
   animation: fadeInUp 0.3s ease-out forwards;
+}
+
+/* 波浪文字滚动动画 */
+@keyframes scrollText {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollTextReverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(-3deg);
+  }
+}
+
+.animate-scroll {
+  animation: scrollText 20s linear infinite;
+}
+
+.animate-scroll-reverse {
+  animation: scrollTextReverse 20s linear infinite;
+}
+
+.animate-wave {
+  animation: wave 3s ease-in-out infinite;
+}
+
+/* 文字条带样式 */
+.text-ribbon {
+  white-space: nowrap;
+  display: flex;
+  gap: 0;
+}
+
+.text-ribbon-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+/* 粉红色圆点 */
+.dot-pink {
+  width: 24px;
+  height: 24px;
+  background: #ff1493;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 10;
+}
+
+/* 搜索结果列表样式 */
+.result-item {
+  border-bottom: 1px solid #000;
+  transition: background-color 0.15s;
+}
+
+.result-item:hover {
+  background-color: rgba(255, 20, 147, 0.05);
+}
+
+/* 黑色圆点按钮 */
+.dot-black {
+  width: 40px;
+  height: 40px;
+  background: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.dot-black:hover {
+  transform: scale(1.1);
 }
