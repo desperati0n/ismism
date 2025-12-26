@@ -1,85 +1,101 @@
-# 主义主义 (Zhuyi Zhuyi)
+# 主义主义 | Ism-ism
 
-大学生用ai做的网页，用来展示未明子的主义主义理论。只是作为功能展示出来（目前里面没有真正的理论，都是ai生成的）
-想了解主义主义去b站或youtube搜索未明子
+> 基于未明子「主义主义」理论的哲学意识形态检索工具
 
-## 🚀 快速开始
+[![Deploy to GitHub Pages](https://github.com/desperati0n/ismism/actions/workflows/deploy.yml/badge.svg)](https://github.com/desperati0n/ismism/actions/workflows/deploy.yml)
 
-### 安装依赖
+## ✨ 在线体验
+
+🔗 **[https://desperati0n.github.io/ismism/](https://desperati0n.github.io/ismism/)**
+
+## 📖 什么是主义主义？
+
+「主义主义」是未明子提出的一套哲学意识形态分析框架。通过四位数字编码 `X-X-X-X`，可以精确定位任意意识形态在哲学坐标系中的位置：
+
+| 维度 | 含义 | 说明 |
+|------|------|------|
+| **场域 (Ontology)** | 世界观框架 | 1=统一 2=二元 3=中介 4=虚无 |
+| **本体 (Body)** | 真实存在 | 构成世界的根本实在 |
+| **现象 (Phenomenon)** | 感知体验 | 主体如何体验世界 |
+| **目的 (Purpose)** | 终极目标 | 意识形态的最终指向 |
+
+例如：`1-1-1-1` = 科学独断论，`2-1-1-1` = 阿派朗主义
+
+## 🎯 功能特点
+
+- 🔍 **编码检索** - 通过四位编码精确查找主义
+- 🃏 **通配符搜索** - 使用 `$` 作为通配符（如 `1-$-$-1`）
+- 📊 **四格分析** - 展示场域/本体/现象/目的的详细解读
+- 📚 **知识延伸** - 相关概念、电影、思想家推荐
+- ❓ **问答解析** - Q&A 形式深入理解核心观点
+- 🎨 **实验风格 UI** - 黑白+粉色先锋设计
+
+## 📊 数据统计
+
+| 项目 | 数量 |
+|------|------|
+| 总主义数 | **192** |
+| 1字头 (科学实在论系) | 64 |
+| 2字头 (形而上学系) | 64 |
+| 3字头 (现象学系) | 64 |
+| 含四格分析 | 178 (93%) |
+| 含知识延伸 | 51 |
+| 含问答 | 16 |
+
+## 🚀 本地开发
 
 ```bash
+# 安装依赖
 npm install
-```
 
-### 启动开发服务器
-
-```bash
+# 启动开发服务器
 npm run dev
+
+# 构建生产版本
+npm run build
 ```
 
 应用将在 `http://localhost:5173` 启动
 
-### 构建生产版本
-
-```bash
-npm run build
-```
-
-### 预览生产版本
-
-```bash
-npm run preview
-```
-
 ## 📁 项目结构
 
 ```
-works/vibecoding/
+ismism/
 ├── App.tsx                 # 主应用组件
 ├── main.tsx                # 应用入口
-├── index.html              # HTML 模板
-├── components/             # React 组件
-│   ├── GridSlider.tsx      # 可滑动格子组件
+├── components/
+│   ├── GridSlider.tsx      # 四格滑动选择器
+│   ├── IsmDetail.tsx       # 主义详情页（四格分析、问答等）
+│   ├── ResultCard.tsx      # 搜索结果卡片
 │   ├── SearchButton.tsx    # 搜索按钮
-│   ├── ResultCard.tsx      # 结果卡片
-│   └── TopNavigation.tsx   # 顶部导航栏
-├── data/                   # 数据文件
-│   └── isms.ts             # 主义数据库和搜索逻辑
-├── styles/                 # 样式文件
-│   └── globals.css         # 全局样式和动画
-├── package.json           # 项目配置
-├── tsconfig.json          # TypeScript 配置
-├── vite.config.ts         # Vite 配置
-└── tailwind.config.js     # Tailwind CSS 配置
+│   ├── TopNavigation.tsx   # 顶部导航
+│   └── WaveTextBackground.tsx  # 波浪文字背景
+├── data/
+│   └── isms.ts             # 192个主义数据库
+├── styles/
+│   └── globals.css         # 全局样式
+└── import_isms.py          # 数据导入脚本
 ```
 
-## 🎮 使用说明
+## 🔧 数据来源
 
-1. **滑动格子**：鼠标悬停在格子上，点击左右箭头切换元素 (1, 2, 3, 4, $)
-2. **搜索**：选择好组合后点击蓝色搜索按钮
-3. **重置**：点击顶部导航栏的"重置"按钮恢复初始状态
-4. **通配符**：
-   - 第一个格子的 `$` 代表"主体性缺失"，显示为珊瑚红色
-   - 其他格子的 `$` 作为通配符使用，显示为金色
+数据来自未明子的「主义主义」系列讲稿笔记，通过 `import_isms.py` 脚本解析 Obsidian Markdown 文件并提取：
 
-## 🛠️ 技术栈
+- 核心论断
+- 四格分析（场域/本体/现象/目的）
+- 知识延伸
+- 问答解析
 
-- **React 18** - UI 框架
-- **TypeScript** - 类型安全
-- **Vite** - 构建工具
-- **Tailwind CSS** - 样式框架
-- **Lucide React** - 图标库
+## 📚 了解更多
 
-## 📝 特性
+- 🎬 [B站搜索「未明子」](https://search.bilibili.com/all?keyword=未明子)
+- 🎬 [YouTube搜索「未明子」](https://www.youtube.com/results?search_query=未明子)
 
-- ✅ 4 个可滑动的格子组件
-- ✅ 支持精确匹配和通配符搜索
-- ✅ 第一个格子的 `$` 特殊处理（主体性缺失）
-- ✅ 平滑的动画效果
-- ✅ 响应式设计
-- ✅ 符合设计系统规范
-
-## 📄 许可证
+## 📄 License
 
 MIT
+
+---
+
+*本项目仅作学习交流用途，理论内容版权归未明子所有。*
 
