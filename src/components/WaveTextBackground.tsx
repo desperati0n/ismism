@@ -3,8 +3,8 @@ interface WaveTextBackgroundProps {
 }
 
 export function WaveTextBackground({ className = '' }: WaveTextBackgroundProps) {
-  // 生成重复的"主义"文字 - 增加重复次数确保覆盖全屏
-  const ismText = '主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义主义';
+  // 生成超长的"主义"文字 - 确保任何屏幕宽度都不会断
+  const baseText = '主义'.repeat(100);
   
   const ribbons = [
     { rotate: -8, top: '5%', delay: 0, reverse: false },
@@ -25,8 +25,8 @@ export function WaveTextBackground({ className = '' }: WaveTextBackgroundProps) 
           style={{
             top: ribbon.top,
             transform: `rotate(${ribbon.rotate}deg)`,
-            width: '300vw',
-            left: '-100vw',
+            width: '500vw',
+            left: '-200vw',
           }}
         >
           <div
@@ -48,7 +48,7 @@ export function WaveTextBackground({ className = '' }: WaveTextBackgroundProps) 
                   fontFamily: "'Noto Sans SC', 'Microsoft YaHei', sans-serif",
                 }}
               >
-                {ismText}{ismText}{ismText}{ismText}{ismText}{ismText}
+                {baseText}
               </span>
             </div>
           </div>
