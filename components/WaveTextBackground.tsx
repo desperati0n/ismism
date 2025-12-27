@@ -61,6 +61,23 @@ export function WaveTextBackground({ className = '' }: WaveTextBackgroundProps) 
                 {ismText}{ismText}{ismText}{ismText}
               </span>
             </div>
+            <div
+              className="flex items-center"
+              style={{
+                background: '#000',
+                padding: '8px 0',
+              }}
+            >
+              <span
+                className="text-white font-black tracking-tight"
+                style={{
+                  fontSize: '24px',
+                  fontFamily: "'Noto Sans SC', 'Microsoft YaHei', sans-serif",
+                }}
+              >
+                {ismText}{ismText}{ismText}{ismText}
+              </span>
+            </div>
           </div>
         </div>
       ))}
